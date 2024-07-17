@@ -1,0 +1,47 @@
+import pandas as pd  
+import numpy as np  
+import matplotlib.pyplot as plt  
+
+from sklearn.model_selection import train_test_split  
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, confusion_matrix 
+
+"""
+1. data 폴더 내에 있는 dataset.csv파일을 불러오고, 
+   학습용 데이터와 테스트용 데이터를 분리하여 
+   반환하는 함수를 구현합니다.
+
+"""
+
+def load_data():
+    data = pd.read_csv('data/dataset.csv')
+
+
+
+
+    return train_X, test_X, train_y, test_y
+
+"""
+2. SVM 모델을 불러오고,
+   학습용 데이터에 맞추어 학습시킨 후, 
+   테스트 데이터에 대한 예측 결과를 반환하는 함수를
+   구현합니다.
+"""
+
+def SVM(train_X, test_X, train_y, test_y):
+
+
+    return pred_y
+
+# 데이터를 불러오고, 모델 예측 결과를 확인하는 main 함수입니다.
+def main():
+
+
+    # SVM 분류 결과값을 출력합니다.
+    print("\nConfusion matrix : \n",confusion_matrix(test_y,pred_y))  
+    print("\naReport : \n",classification_report(test_y,pred_y)) 
+    
+if __name__ == "__main__":
+
+    main()
+
