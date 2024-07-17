@@ -16,6 +16,28 @@ def load_data():
 
     return train_X, test_X, train_y, test_y
 
+def plot_logistic_regression(model, X, y):
+    # X는 feature가 하나이므로 간단히 시각화가 가능합니다.
+    plt.figure(figsize=(10, 6))
+    
+    # 데이터 포인트 그리기
+    plt.scatter(X, y, color='black', zorder=20)
+    
+    # 결정 경계 그리기
+    X_test = np.linspace(-5, 25, 300)
+    loss = model.predict_proba(X_test[:, np.newaxis])[:, 1]
+    plt.plot(X_test, loss, color='red', linewidth=3)
+    
+    plt.axhline(0, color='black', linestyle='--')
+    plt.axhline(1, color='black', linestyle='--')
+    plt.axhline(0.5, color='blue', linestyle='--')
+    plt.axvline(0, color='black', linestyle='--')
+
+    plt.ylabel('Probability')
+    plt.xlabel('Feature Value')
+    plt.title('Logistic Regression - Probability vs Feature')
+    plt.show()
+
 """
 1. 로지스틱 회귀 모델을 구현하고, 
    학습 결과를 확인할 수 있는 main() 함수를 완성합니다. 
