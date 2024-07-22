@@ -1,9 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from elice_utils import EliceUtils
-elice_utils = EliceUtils()
-
 # 데이터를 생성하고 반환하는 함수입니다.
 def load_data():
     
@@ -73,9 +70,7 @@ def plotting_graph(X,y,beta_0,beta_1):
     
     plt.scatter(X, y)
     plt.plot(X, y_pred,c='r')
-    
-    plt.savefig("test.png")
-    elice_utils.send_image("test.png")
+    plt.show()
 
 
 # 회귀 알고리즘 구현 진행을 위한 main() 함수입니다.  
