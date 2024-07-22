@@ -52,8 +52,7 @@ def plotting_graph(train_X, test_X, train_y, test_y, predicted):
     ax[1].set_xlabel('test_X')
     ax[1].set_ylabel('test_y')
     
-    fig.savefig("result.png")
-    elice_utils.send_image("result.png")
+    plt.show()
     
 """
 3. 모델 학습 및 예측 결과 확인을 위한 
