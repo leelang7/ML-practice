@@ -1,9 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from elice_utils import EliceUtils
-elice_utils = EliceUtils()
-
 # 데이터를 분리하는 모듈을 불러옵니다.
 from sklearn.model_selection import train_test_split
 
