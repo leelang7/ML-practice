@@ -2,9 +2,6 @@ import preprocess as pre
 import model as md
 import numpy as np
 
-from elice_utils import EliceUtils
-elice_utils = EliceUtils()
-
 def variance_calculator(model):
     
     # PCA 결과에 대한 분산의 유지율 계산하여 반환합니다.
