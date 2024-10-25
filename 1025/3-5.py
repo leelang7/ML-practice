@@ -7,17 +7,16 @@ import matplotlib.pyplot as plt
 1. 데이터를 불러오고, 
    2개의 변수만을 가질 수 있도록 고정하여 
    반환하는 함수를 구현합니다.
-
+   
    [실습4]에서 구현한 함수를 그대로 사용할 수 있습니다. 
 """
 def load_data():
     
-    X, y = load_wine(return_X_y = True)
+    X, y = None
     
     column_start = 6
     X = X[:, column_start : column_start+2]
-    print(X)
-    
+    print(X.shape)
     return X
     
 """
@@ -26,9 +25,9 @@ def load_data():
 """
 def tsne_data(X):
     
-    tsne = TSNE(n_components=1)
+    tsne = None
     
-    X_tsne = tsne.fit_transform(X)
+    X_tsne = None
     
     return tsne, X_tsne
 
