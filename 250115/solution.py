@@ -1,8 +1,5 @@
-# 트럼프 전 대통령의 트윗 모음을 불러옵니다.
+# 트럼프 대통령의 트윗 모음을 불러옵니다.
 from tweets import trump_tweets
-
-# 분석에서 제외하기 위한 불용어 모음을 불러옵니다.
-from stopwords import stopwords
 
 # 그래프에 필요한 라이브러리를 불러옵니다. 
 import matplotlib.pyplot as plt
@@ -26,7 +23,13 @@ def preprocess_text(text):
     # @와 #을 제외한 특수문자로 이루어진 문자열 symbols를 만듭니다.
     symbols = punctuation.replace('@', '').replace('#', '')
     
-    return []
+    # text에서 @와 #을 제외한 모든 특수문자를 제거합니다.
+    for symbol in symbols:
+        text = text.replace(symbol, '')
+    
+    # text를 띄어쓰기 단위로 쪼갭니다.
+    words = text.split()
+    return words
     
 
 # 해시태그와 키워드를 추출합니다. 
@@ -34,6 +37,41 @@ def analyze_text(words):
     # 키워드, 해시태그, 멘션을 저장할 리스트를 각각 생성합니다.
     keywords, hashtags, mentions = [], [], []
     
+    # 걸러낼 단어를 자유롭게 추가 or 삭제해보세요.
+    filter_words = ['the', 'to', 'of', 'in', 'for', 'and', 'from', 'is', 'on', 'it', 'this', 'that', 'are', 'was', 'will', 'with', 'very', 'a', 'be', 'by', 'must', 'just', 'not']
+    
+    # 쪼갠 단어들을 분류합니다.
+    for word in words:
+        
+        '''
+        filter_words 를 이용해 의미없는 단어는 제거할 수 있습니다.
+        아래 주석을 해제하여 일부 단어를 제거한 결과를 확인할 수 있습니다.
+        '''
+        # if word in filter_words :
+        #     continue
+        
+        # 해시태그일 경우
+        if word.startswith('#'):
+            # 해시(#)를 제외한 단어를 plain_word 변수에 저장합니다.
+            plain_word = word[1:]
+            
+            # plain_word를 적절한 리스트에 추가합니다.
+            keywords.append(plain_word)
+            hashtags.append(plain_word)
+        
+        # 멘션일 경우
+        elif word.startswith('@'):
+            # @ 기호를 제외한 단어를 plain_word 변수에 저장합니다.
+            plain_word = word[1:]
+            
+            # plain_word를 적절한 리스트에 추가합니다.
+            keywords.append(plain_word)
+            mentions.append(plain_word)
+        
+        # 둘 다 아닐 경우
+        else:
+            # word를 적절한 리스트에 추가합니다.
+            keywords.append(word)
     
     return keywords, hashtags, mentions
 
@@ -45,9 +83,12 @@ def filter_by_month(tweet_data, month):
     
     # 선택한 달의 트윗을 filtered_tweets에 저장합니다.
     filtered_tweets = []
+    for date, tweet in tweet_data:
+        # 트윗의 날짜가 선택한 달에 속해 있으면 트윗의 내용을 filtered_tweets에 추가합니다.
+        if date.startswith(month_string):
+            filtered_tweets.append(tweet)
     
-    # 트윗의 날짜가 선택한 달에 속해 있으면 트윗의 내용을 filtered_tweets에 추가합니다.
-    
+    return filtered_tweets
 
 
 # 트윗 통계를 출력합니다.
@@ -75,6 +116,7 @@ def show_tweets_by_month():
     
     plt.bar(months, num_tweets, align='center')
     plt.xticks(months, months)
+    
     plt.savefig('graph.png')
 
 
@@ -98,15 +140,15 @@ def main(code=1):
     if code == 1:
         show_stats()
     
-    # 트럼프 전 대통령의 월별 트윗 개수 그래프를 출력합니다.
+    # 트럼프 대통령의 월별 트윗 개수 그래프를 출력합니다.
     if code == 2:
         show_tweets_by_month()
     
-    # 트럼프 전 대통령의 트윗 키워드로 단어구름을 그립니다.
+    # 트럼프 대통령의 트윗 키워드로 단어구름을 그립니다.
     if code == 3:
         create_word_cloud()
 
 
 # main 함수를 실행합니다. 
 if __name__ == '__main__':
-    main(2)
+    main(3)
