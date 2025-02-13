@@ -35,14 +35,14 @@
 
 ```
 preprocess_text("On my way! #Inauguration2017 https://t.co/hOuMbxGnpe")
-Copy
+
 ```
 
 #### 반환 예시
 
 ```
 ['on', 'my', 'way', '#inauguration2017', 'httpstcohoumbxgnpe']
-Copy
+
 ```
 
 ### 2. `analyze_text(words)`
@@ -58,14 +58,14 @@ Copy
 
 ```
 analyze_text(['on', 'my', 'way', '#inauguration2017', 'httpstcohoumbxgnpe'])
-Copy
+
 ```
 
 #### 반환 예시
 
 ```
 (['on', 'my', 'way', 'inauguration2017', 'httpstcohoumbxgnpe'], ['inauguration2017'], [])
-Copy
+
 ```
 
 ### 3. `filter_by_month(tweet_data, month)`
@@ -80,7 +80,7 @@ Copy
 tweet_data = [('01-19-2017 20:13:57', 'On my way! #Inauguration2017 https://t.co/hOuMbxGnpe'), ('02-01-2017 00:31:08', 'Getting ready to deliver a VERY IMPORTANT DECISION!  8:00 P.M.'), ('03-03-2017 02:27:29', '...intentional. This whole narrative is a way of saving face for Democrats losing an election that everyone thought they were supposed.....'), ('03-03-2017 02:35:33', '...to win. The Democrats are overplaying their hand. They lost the election and now they have lost their grip on reality. The real story...')]
 
 month = 3
-Copy
+
 ```
 
 인 상태로 호출한 결과는 다음과 같습니다.
@@ -89,7 +89,7 @@ Copy
 
 ```
 ['...intentional. This whole narrative is a way of saving face for Democrats losing an election that everyone thought they were supposed.....', '...to win. The Democrats are overplaying their hand. They lost the election and now they have lost their grip on reality. The real story...']
-Copy
+
 ```
 
 전체 트윗 데이터 중 3월에 작성한 트윗의 내용을 리스트에 담아 반환했습니다.
